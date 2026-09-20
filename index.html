@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brazil Boogie — Combined Reach</title>
+<meta name="description" content="Combined Instagram reach of the Brazil Boogie crew.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --taupe:#796c5c; --taupe-2:#807566; --taupe-soft:#9a918a;
+    --dark:#404242; --body:#514a41; --near-black:#161616;
+    --cream:#fff8ee; --offwhite:#f9f8f7; --white:#fff;
+    --line:#ece7e0; --line-2:#e2d9cb; --sand:#f4efe7; --gold:#b3a795;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{background:var(--offwhite);font-family:'Jost',sans-serif;color:var(--body);-webkit-font-smoothing:antialiased;line-height:1.5;}
+  .page{max-width:1040px;margin:0 auto;padding:56px 24px 72px;}
+
+  .header{text-align:center;margin-bottom:44px;}
+  .eyebrow{font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--taupe);font-weight:500;margin-bottom:18px;}
+  .header h1{font-family:'Playfair Display',serif;font-weight:600;color:var(--near-black);font-size:clamp(34px,6vw,56px);line-height:1.05;letter-spacing:.5px;margin-bottom:14px;}
+  .header .lead{font-size:16px;color:var(--taupe-soft);max-width:520px;margin:0 auto;font-weight:300;}
+
+  .total{background:var(--white);border:1px solid var(--line-2);border-radius:20px;padding:40px 28px;text-align:center;margin:0 auto 56px;max-width:620px;box-shadow:0 20px 50px -30px rgba(121,108,92,.45);}
+  .total .label{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--taupe);font-weight:500;margin-bottom:12px;}
+  .total .val{font-family:'Playfair Display',serif;font-weight:700;color:var(--near-black);font-size:clamp(52px,11vw,84px);line-height:1;letter-spacing:-1px;}
+  .total .val .plus{color:var(--taupe);}
+  .total .detail{font-size:14px;color:var(--taupe-soft);margin-top:16px;font-weight:300;letter-spacing:.02em;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px;}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:24px 16px 20px;text-align:center;text-decoration:none;display:block;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;}
+  .card:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 18px 40px -24px rgba(121,108,92,.55);}
+  .avatar{width:72px;height:72px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:24px;font-weight:600;color:var(--white);letter-spacing:.5px;box-shadow:inset 0 0 0 3px rgba(255,255,255,.55);}
+  .card .name{font-size:15px;font-weight:500;color:var(--near-black);margin-bottom:2px;display:flex;align-items:center;justify-content:center;gap:5px;}
+  .card .name .tick{width:14px;height:14px;flex:0 0 14px;}
+  .card .handle{font-size:12px;color:var(--taupe-soft);margin-bottom:14px;font-weight:300;}
+  .card .followers{font-family:'Playfair Display',serif;font-size:24px;font-weight:600;color:var(--taupe);line-height:1;}
+  .card .followers .cap{display:block;font-family:'Jost',sans-serif;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe-soft);font-weight:400;margin-top:6px;}
+  .card .est{color:var(--gold);font-size:14px;vertical-align:super;}
+
+  .footer{text-align:center;margin-top:36px;padding-top:28px;border-top:1px solid var(--line);font-size:12px;color:var(--taupe-soft);letter-spacing:.06em;font-weight:300;}
+  .footer .note{display:block;margin-top:8px;font-size:11px;color:var(--gold);}
+
+  @media(max-width:600px){
+    .page{padding:40px 16px 56px;}
+    .grid{grid-template-columns:repeat(2,1fr);gap:12px;}
+    .card{padding:20px 10px 16px;}
+    .avatar{width:60px;height:60px;font-size:20px;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <div class="eyebrow">Brazil Boogie · Búzios · October 2026</div>
+    <h1>The Crew's Combined Reach</h1>
+    <p class="lead">Everyone who'll be there — one boogie, one audience.</p>
+  </header>
+
+  <div class="total">
+    <div class="label">Total Combined Followers</div>
+    <div class="val" id="grandTotal">0<span class="plus">+</span></div>
+    <div class="detail" id="grandDetail"></div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="footer">
+    Brazil Boogie · Búzios, Brazil · combined Instagram reach
+    <span class="note">Live follower counts · updated Sep 20, 2026</span>
+  </div>
+
+</div>
+
+<script>
+  // Live counts pulled from Instagram on Sep 20, 2026. v:true = verified.
+  const CREW = [
+    {h:"shelbyrobinss",   name:"Shelby Robins",   f:850307, v:true},
+    {h:"freddychase",     name:"Freddy Chase",    f:798462, v:true},
+    {h:"callie.rounds",   name:"Callie Rounds",   f:512559, v:true},
+    {h:"jackrosen6",      name:"Jack Rosenthal",  f:302308},
+    {h:"yusefireown",     name:"Yusef Reown",     f:288692, v:true},
+    {h:"wahab.alsaleh",   name:"Wahab Alsaleh",   f:208596, v:true},
+    {h:"kyle.zellner",    name:"Kyle Zellner",    f:170811, v:true},
+    {h:"phillip3s",       name:"Phillip Pham",    f:161722, v:true},
+    {h:"sarahrosenborg",  name:"Sarah Rosenborg", f:76240,  v:true},
+    {h:"shivsocial",      name:"Shiv",            f:42061,  v:true},
+    {h:"cora_schwan",     name:"Cora Schwan",     f:36356,  v:true},
+    {h:"robstamm",        name:"Rob Stamm",       f:24296,  v:true},
+    {h:"thatjamesadams",  name:"James Adams",     f:15498,  v:true},
+    {h:"chey_siner",      name:"Cheyenne",        f:9606},
+    {h:"iisaacbass",      name:"Isaac Bass",      f:7314},
+    {h:"traderjoez__",    name:"Joey",            f:6057},
+    {h:"natalia.torres_", name:"Natalia Torres",  f:4723},
+    {h:"keoni.anderson",  name:"Keoni Anderson",  f:3976},
+    {h:"zachary.edwards1",name:"Zach Edwards",    f:831},
+  ];
+
+  const GRADS=[["#8a7d6b","#5f5546"],["#a89a86","#7a6f5e"],["#9a8f7a","#6a6052"],["#b3a795","#867a68"],["#7f7462","#544b3d"],["#c3b9ab","#8a8078"],["#93876f","#635a49"],["#ab9e88","#7d715f"],["#8f8370","#605645"],["#bcae99","#8a7f66"]];
+  const initials=n=>n.replace(/[^A-Za-z ]/g,'').split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase()||"•";
+  const fmt=n=>n.toLocaleString("en-US");
+  const TICK='<svg class="tick" viewBox="0 0 24 24" fill="#796c5c"><path d="M12 2l2.4 1.8 3-.2 1 2.8 2.6 1.5-.8 2.9.8 2.9-2.6 1.5-1 2.8-3-.2L12 22l-2.4-1.8-3 .2-1-2.8L3 16.3l.8-2.9L3 10.5l2.6-1.5 1-2.8 3 .2z"/><path d="M10.6 14.6l-2.2-2.2-1.2 1.2 3.4 3.4 5.6-5.6-1.2-1.2z" fill="#fff"/></svg>';
+
+  CREW.sort((a,b)=>b.f-a.f);
+  let grand=0;
+  const grid=document.getElementById("grid");
+  CREW.forEach((p,i)=>{
+    grand+=p.f;
+    const g=GRADS[i%GRADS.length];
+    const a=document.createElement("a");
+    a.className="card"; a.href="https://instagram.com/"+p.h; a.target="_blank"; a.rel="noopener";
+    a.innerHTML=`
+      <div class="avatar" style="background:linear-gradient(140deg,${g[0]},${g[1]});">${initials(p.name)}</div>
+      <div class="name">${p.name}${p.v?TICK:''}</div>
+      <div class="handle">@${p.h}</div>
+      <div class="followers">${p.est?'<span class="est">≈</span>':''}${fmt(p.f)}<span class="cap">followers</span></div>`;
+    grid.appendChild(a);
+  });
+
+  document.getElementById("grandDetail").textContent=CREW.length+" creators · skydiving · travel · adventure";
+  const gt=document.getElementById("grandTotal"),dur=1500,start=performance.now();
+  (function tick(now){
+    const t=Math.min((now-start)/dur,1),e=1-Math.pow(1-t,3);
+    gt.innerHTML=fmt(Math.round(grand*e))+'<span class="plus">+</span>';
+    if(t<1)requestAnimationFrame(tick);
+  })(start);
+</script>
+</body>
+</html>
